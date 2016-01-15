@@ -11,6 +11,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.android.databinding'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
+apply plugin: 'kotlin-android'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -65,12 +66,16 @@ android {
         exclude 'LICENSE.txt'
     }
 
+
     productFlavors {
         mock {
+
         }
         prod {
 
         }
+
+
     }
     // Remove mockRelease as it's not needed.
     android.variantFilter { variant ->
@@ -85,7 +90,10 @@ android {
             events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
         }
     }
-
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
     buildTypes {
         release {
             shrinkResources false
@@ -165,4 +173,6 @@ dependencies {
     compile "com.google.android.gms:play-services-appindexing:$rootProject.ext.googlePlayServicesVersion"
     compile "com.android.support:design:$rootProject.ext.googlePlayServicesVersion"
     compile "com.google.android.gms:play-services-analytics:$rootProject.ext.googlePlayServicesVersion"
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.0.0-beta-4584'
+
 }

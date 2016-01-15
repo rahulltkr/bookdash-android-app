@@ -67,10 +67,10 @@ public class ListBooksActivity extends BaseAppCompatActivity implements ListBook
         setSupportActionBar(toolbar);
         final ActionBar actionBar = getSupportActionBar();
 
-        if (actionBar != null) {
+
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
             actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+
 
         setUpNavDrawer();
         circularProgressBar = (CircularProgressBar) findViewById(R.id.activity_loading_books);
