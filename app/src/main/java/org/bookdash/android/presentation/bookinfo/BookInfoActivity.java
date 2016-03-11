@@ -48,7 +48,6 @@ import org.bookdash.android.Injection;
 import org.bookdash.android.R;
 import org.bookdash.android.domain.pojo.BookContributor;
 import org.bookdash.android.domain.pojo.BookDetail;
-import org.bookdash.android.domain.pojo.BookDetailParcelable;
 import org.bookdash.android.domain.pojo.gson.BookPages;
 import org.bookdash.android.presentation.activity.BaseAppCompatActivity;
 import org.bookdash.android.presentation.readbook.BookDetailActivity;
@@ -180,12 +179,12 @@ public class BookInfoActivity extends BaseAppCompatActivity implements BookInfoC
                 return true;
             }
         });
-        final BookDetailParcelable bookDetailParcelable = getIntent().getParcelableExtra(BOOK_PARCEL);
+        final BookDetail bookDetailParcelable = getIntent().getParcelableExtra(BOOK_PARCEL);
 
         if (bookDetailParcelable != null) {
-            String bookDetailId = bookDetailParcelable.getBookDetailObjectId();
+            String bookDetailId = bookDetailParcelable.getObjectId();
             startLoadingBook(bookDetailId);
-            actionsListener.loadImage(bookDetailParcelable.getBookImageUrl());
+            actionsListener.loadImage(bookDetailParcelable.getBook_cover_page_url());
         } else {
             onNewIntent(getIntent());
         }
@@ -345,10 +344,10 @@ public class BookInfoActivity extends BaseAppCompatActivity implements BookInfoC
 
         this.bookInfo = bookInfo;
         binding.setVariable(BR.book_info, bookInfo);
-        actionsListener.loadImage(bookInfo.getBookCoverUrl());
+        actionsListener.loadImage(bookInfo.getBook_cover_page_url());
         viewAction = Action.newAction(
                 Action.TYPE_VIEW,
-                bookInfo.getBookTitle(),
+                bookInfo.getBook_title(),
                 bookInfo.getWebUrl() == null ? null : Uri.parse(bookInfo.getWebUrl()),
                 Uri.parse("android-app://org.bookdash.android/http/bookdash.org/books/" + bookInfo.getObjectId())
         );
@@ -365,7 +364,7 @@ public class BookInfoActivity extends BaseAppCompatActivity implements BookInfoC
         Intent intent = new Intent(BookInfoActivity.this, BookDetailActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(BookDetailActivity.BOOK_PAGES, bookPages);
-        intent.putExtra(BookDetailActivity.BOOK_ARG, bookDetail.getBookTitle());
+        intent.putExtra(BookDetailActivity.BOOK_ARG, bookDetail.getBook_title());
         intent.putExtra(BookDetailActivity.LOCATION_BOOK, location);
         startActivity(intent);
     }

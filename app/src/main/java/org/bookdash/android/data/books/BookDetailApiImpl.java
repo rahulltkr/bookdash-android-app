@@ -36,12 +36,13 @@ import bolts.Task;
  * @author rebeccafranks
  * @since 15/11/03.
  */
-public class BookDetailApiImpl implements BookDetailApi {
+public class BookDetailApiImpl  {
 
     private static final String TAG = "BookDetailApiImpl";
     private final Executor DISK_EXECUTOR = Executors.newCachedThreadPool();
 
-    @Override
+
+   /* @Override
     public void getBooksForLanguages(@NonNull String language, @NonNull final BookServiceCallback<List<BookDetail>> bookServiceCallback) {
         ParseQuery<Language> queryLanguagesNew = ParseQuery.getQuery(Language.class);
         queryLanguagesNew.whereEqualTo(Language.LANG_NAME_COL, language);
@@ -84,8 +85,8 @@ public class BookDetailApiImpl implements BookDetailApi {
             }
         });
     }
-
-    @Override
+*/
+   /* @Override
     public void getContributorsForBook(Book bookId, final BookServiceCallback<List<BookContributor>> contributorsCallback) {
 
         ParseQuery<BookContributor> query = ParseQuery.getQuery(BookContributor.class);
@@ -214,5 +215,5 @@ public class BookDetailApiImpl implements BookDetailApi {
             Log.e(TAG, "error parsing book: " + fileName, e);
         }
         return bookPages;
-    }
+    }*/
 }

@@ -105,7 +105,7 @@
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
 
                     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                    app:title="@{book_info.bookTitle}" />
+                    app:title="@{book_info.book_title}" />
 <!--
             </android.support.design.widget.CollapsingToolbarLayout>-->
 
@@ -168,11 +168,11 @@
                                 android:layout_marginLeft="8dp"
                                 android:layout_marginTop="8dp"
                                 android:fontFamily="sans-serif"
-                                android:text="@{book_info.bookTitle}"
+                                android:text="@{book_info.book_title}"
                                 android:textColor="@color/text_color_primary_dark"
                                 android:textSize="24sp" />
 
-                            <TextView
+                          <!--  <TextView
                                 android:id="@+id/text_view_date_book_created"
                                 android:layout_width="wrap_content"
                                 android:layout_height="48dp"
@@ -185,7 +185,7 @@
                                 android:gravity="center_vertical"
                                 android:text="@{book_info.book.dateBookCreated}"
                                 android:textColor="@color/text_secondary_dark"
-                                android:textSize="14sp" />
+                                android:textSize="14sp" />-->
                         </RelativeLayout>
 
                         <View

@@ -1,8 +1,10 @@
 package org.bookdash.android.domain.pojo;
 
-import com.parse.ParseClassName;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.parse.ParseFile;
-import com.parse.ParseObject;
 
 import org.bookdash.android.BookDashApplication;
 
@@ -12,8 +14,8 @@ import java.io.File;
  * @author Rebecca Franks
  * @since 2015/07/16 2:10 PM
  */
-@ParseClassName(BookDetail.BOOK_TABLE_NAME)
-public class BookDetail extends ParseObject {
+@JsonIgnoreProperties(ignoreUnknown=true)
+public class BookDetail implements Parcelable {
 
     public static final String BOOK_TABLE_NAME = "BookDetails";
     public static final String BOOK_TITLE_COL = "book_title";
@@ -29,48 +31,75 @@ public class BookDetail extends ParseObject {
     private static final String WEB_URL_COL = "book_website_link";
 
 
+    private String book_title;
+    private String book_cover_page_url;
+    private String aboutBook;
+    private String book_enabled;
+    private String book_language;
+    private String objectId;
     private boolean isDownloading = false;
+    private String webUrl;
 
     public BookDetail() {
     }
 
     public BookDetail(String title, String bookCoverUrl, String objectId, Language languageId) {
-        super(BOOK_TABLE_NAME);
-        put(BOOK_TITLE_COL, title);
-        put(BOOK_COVER_PAGE_URL_COL, bookCoverUrl);
-        put(BOOK_LANGUAGE_COL, languageId);
-        setObjectId(objectId);
-      //  put(OBJECT_ID, objectId);
-        //put();
+        book_title = title;
+        book_cover_page_url = bookCoverUrl;
+        this.objectId = objectId;
+
     }
 
-    public String getBookTitle() {
-        return getString(BOOK_TITLE_COL);
+    protected BookDetail(Parcel in) {
+        book_title = in.readString();
+        book_cover_page_url = in.readString();
+        aboutBook = in.readString();
+        book_enabled = in.readString();
+        book_language = in.readString();
+        objectId = in.readString();
+        isDownloading = in.readByte() != 0;
+        webUrl = in.readString();
     }
 
-    public String getBookCoverUrl() {
-        return getString(BOOK_COVER_PAGE_URL_COL);
+    public static final Creator<BookDetail> CREATOR = new Creator<BookDetail>() {
+        @Override
+        public BookDetail createFromParcel(Parcel in) {
+            return new BookDetail(in);
+        }
+
+        @Override
+        public BookDetail[] newArray(int size) {
+            return new BookDetail[size];
+        }
+    };
+
+    public String getBook_title() {
+        return book_title;
+    }
+
+    public String getBook_cover_page_url() {
+        return book_cover_page_url;
     }
 
     public ParseFile getBookFile() {
-        return getParseFile(BOOK_DOWNLOAD_FILE_COL);
+        return null;//getParseFile(BOOK_DOWNLOAD_FILE_COL);
     }
 
-    public Language getLanguage() {
+   /* public Language getLanguage() {
         return (Language) get(BOOK_LANGUAGE_COL);
     }
 
     public Book getBook() {
         return (Book) get(BOOK_ID_COL);
     }
-
+*/
     public String getAboutBook() {
-        return getString(ABOUT_BOOK_COL);
+        return aboutBook;
     }
 
 
     public String getFolderLocation(String filesDir) {
-        return getFolderLocation(new File(filesDir, getObjectId() + File.separator));
+        return getFolderLocation(new File(filesDir, objectId + File.separator));
     }
 
     private String getFolderLocation(File file) {
@@ -82,10 +111,15 @@ public class BookDetail extends ParseObject {
     }
 
     public boolean isDownloadedAlready() {
-        String targetLocation = BookDashApplication.FILES_DIR + File.separator + getObjectId();
+        String targetLocation = BookDashApplication.FILES_DIR + File.separator + objectId;
         File f = new File("", targetLocation);
         return f.exists();
     }
+
+    public String getObjectId() {
+        return objectId;
+    }
+
     public boolean isDownloading() {
         return isDownloading;
     }
@@ -94,16 +128,34 @@ public class BookDetail extends ParseObject {
         this.isDownloading = isDownloading;
     }
 
-    public BookDetailParcelable toBookParcelable() {
+    /*public BookDetailParcelable toBookParcelable() {
         BookDetailParcelable bookDetailParcelable = new BookDetailParcelable();
-        bookDetailParcelable.setBookTitle(getBookTitle());
-        bookDetailParcelable.setBookImageUrl(getBookCoverUrl());
+        bookDetailParcelable.setBookTitle(getBook_title());
+        bookDetailParcelable.setBookImageUrl(getBook_cover_page_url());
         bookDetailParcelable.setBookDetailObjectId(getObjectId());
         bookDetailParcelable.setWebUrl(getWebUrl());
         return bookDetailParcelable;
-    }
+    }*/
 
     public String getWebUrl() {
-        return getString(WEB_URL_COL);
+        return webUrl;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(book_title);
+        dest.writeString(book_cover_page_url);
+        dest.writeString(aboutBook);
+        dest.writeString(book_enabled);
+        dest.writeString(book_language);
+        dest.writeString(objectId);
+        dest.writeByte((byte) (isDownloading ? 1 : 0));
+        dest.writeString(webUrl);
+    }
+
 }

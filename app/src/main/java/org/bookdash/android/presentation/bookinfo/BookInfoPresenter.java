@@ -15,11 +15,8 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import org.bookdash.android.BookDashApplication;
 import org.bookdash.android.R;
 import org.bookdash.android.data.books.BookDetailRepository;
-import org.bookdash.android.domain.pojo.BookContributor;
 import org.bookdash.android.domain.pojo.BookDetail;
 import org.bookdash.android.domain.pojo.gson.BookPages;
-
-import java.util.List;
 
 /**
  * @author rebeccafranks
@@ -60,12 +57,12 @@ public class BookInfoPresenter implements BookInfoContract.UserActionsListener {
 
         booksView.setBookInfoBinding(bookDetail);
 
-        booksView.setToolbarTitle(bookDetail.getBookTitle());
+        booksView.setToolbarTitle(bookDetail.getBook_title());
         if (bookDetail.isDownloadedAlready()) {
             booksView.showDownloadFinished();
         }
         booksView.showBookDetailView();
-        bookDetailRepository.getContributorsForBook(bookDetail.getBook(), new BookDetailRepository.GetContributorsCallback() {
+      /*  bookDetailRepository.getContributorsForBook(bookDetail.getBook(), new BookDetailRepository.GetContributorsCallback() {
             @Override
             public void onContributorsLoaded(List<BookContributor> contributors) {
                 booksView.showContributors(contributors);
@@ -75,7 +72,7 @@ public class BookInfoPresenter implements BookInfoContract.UserActionsListener {
             public void onContributorsLoadError(Exception e) {
 
             }
-        });
+        });*/
 
     }
 
@@ -137,7 +134,7 @@ public class BookInfoPresenter implements BookInfoContract.UserActionsListener {
             booksView.showError(context.getString(R.string.book_info_still_loading));
             return;
         }
-        booksView.sendShareEvent(bookInfo.getBookTitle());
+        booksView.sendShareEvent(bookInfo.getBook_title());
     }
 
     private void extractPaletteColors(Bitmap resource) {

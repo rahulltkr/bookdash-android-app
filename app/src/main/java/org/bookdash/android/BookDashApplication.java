@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
+import com.firebase.client.Firebase;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.parse.Parse;
@@ -39,14 +40,17 @@ public class BookDashApplication extends Application {
                 .build();
         Fabric.with(this, crashlyticsKit);
 
-        ParseObject.registerSubclass(BookDetail.class);
-        ParseObject.registerSubclass(Language.class);
-        ParseObject.registerSubclass(Book.class);
-        ParseObject.registerSubclass(Contributor.class);
-        ParseObject.registerSubclass(BookContributor.class);
-        Parse.setLogLevel(Parse.LOG_LEVEL_VERBOSE);
+        Firebase.setAndroidContext(this);
+        Firebase.getDefaultConfig().setPersistenceEnabled(true);
 
-        Parse.initialize(this, BuildConfig.PARSE_APPLICATION_ID, BuildConfig.PARSE_CLIENT_KEY);
+      //  ParseObject.registerSubclass(BookDetail.class);
+     //   ParseObject.registerSubclass(Language.class);
+        //ParseObject.registerSubclass(Book.class);
+       // ParseObject.registerSubclass(Contributor.class);
+       // ParseObject.registerSubclass(BookContributor.class);
+       // Parse.setLogLevel(Parse.LOG_LEVEL_VERBOSE);
+
+       /* Parse.initialize(this, BuildConfig.PARSE_APPLICATION_ID, BuildConfig.PARSE_CLIENT_KEY);
         ParsePush.subscribeInBackground("", new SaveCallback() {
             @Override
             public void done(ParseException e) {
@@ -56,7 +60,7 @@ public class BookDashApplication extends Application {
                     Log.e("com.parse.push", "failed to subscribe for push", e);
                 }
             }
-        });
+        });*/
         isTablet = getResources().getBoolean(R.bool.is_tablet);
         FILES_DIR = getFilesDir().getPath();
         getDefaultTracker().enableAutoActivityTracking(true);

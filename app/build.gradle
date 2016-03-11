@@ -63,6 +63,7 @@ android {
         exclude 'META-INF/maven/com.google.guava/guava/pom.properties'
         exclude 'META-INF/maven/com.google.guava/guava/pom.xml'
         exclude 'LICENSE.txt'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
     }
 
     productFlavors {
@@ -165,4 +166,5 @@ dependencies {
     compile "com.google.android.gms:play-services-appindexing:$rootProject.ext.googlePlayServicesVersion"
     compile "com.android.support:design:$rootProject.ext.googlePlayServicesVersion"
     compile "com.google.android.gms:play-services-analytics:$rootProject.ext.googlePlayServicesVersion"
+    compile 'com.firebase:firebase-client-android:2.5.2'
 }
