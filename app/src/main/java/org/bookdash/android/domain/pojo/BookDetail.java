@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.parse.ParseFile;
 
 import org.bookdash.android.BookDashApplication;
 
@@ -67,9 +66,9 @@ public class BookDetail implements Parcelable {
         return book_cover_page_url;
     }
 
-    public ParseFile getBookFile() {
+ /*   public ParseFile getBookFile() {
         return null;//getParseFile(BOOK_DOWNLOAD_FILE_COL);
-    }
+    }*/
 
    /* public Language getLanguage() {
         return (Language) get(BOOK_LANGUAGE_COL);

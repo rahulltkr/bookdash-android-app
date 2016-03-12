@@ -1,34 +1,35 @@
 package org.bookdash.android.domain.pojo;
 
-import com.parse.ParseClassName;
-import com.parse.ParseFile;
-import com.parse.ParseObject;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@ParseClassName("Contributor")
-public class Contributor extends ParseObject {
 
-    public static final String CONTRIBUTOR_TABLE = "Contributor";
-    public static final String COL_NAME = "name";
-    public static final String COL_ROLE = "role";
+@JsonIgnoreProperties(ignoreUnknown=true)
+public class Contributor  {
+
+
+    private String name;
+    private String role;
+    private String avatarUrl;
 
     public Contributor() {
     }
 
     public Contributor(String name, String role) {
-        super(CONTRIBUTOR_TABLE);
-        put(COL_NAME, name);
-        put(COL_ROLE, role);
+        this.name = name;
+        this.role = role;
+
     }
 
-    public String getName(){
-        return getString(COL_NAME);
-    }
-    public String getRole(){
-        return getString(COL_ROLE);
+    public String getName() {
+        return name;
     }
 
-    public ParseFile getAvatar(){
-        return getParseFile("avatar");
+    public String getRole() {
+        return role;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
 }

@@ -86,10 +86,10 @@ public class BookInfoPresenter implements BookInfoContract.UserActionsListener {
             return;
         }
         bookInfo.setIsDownloading(true);
-        if (bookInfo.getBookFile() == null || bookInfo.getBookFile().getUrl() == null) {
+        /*if (bookInfo.getBookFile() == null || bookInfo.getBookFile().getUrl() == null) {
             booksView.showSnackBarMessage(R.string.book_not_available);
             return;
-        }
+        }*/
 
 
         bookDetailRepository.downloadBook(bookInfo, new BookDetailRepository.GetBookPagesCallback() {

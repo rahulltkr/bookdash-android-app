@@ -1,36 +1,7 @@
 package org.bookdash.android.data.books;
 
-import android.support.annotation.NonNull;
-import android.util.Log;
-
-import com.google.gson.Gson;
-import com.parse.FindCallback;
-import com.parse.GetCallback;
-import com.parse.GetDataCallback;
-import com.parse.ParseException;
-import com.parse.ParseQuery;
-import com.parse.ProgressCallback;
-
-import org.bookdash.android.BookDashApplication;
-import org.bookdash.android.domain.pojo.Book;
-import org.bookdash.android.domain.pojo.BookContributor;
-import org.bookdash.android.domain.pojo.BookDetail;
-import org.bookdash.android.domain.pojo.Language;
-import org.bookdash.android.domain.pojo.gson.BookPages;
-import org.bookdash.android.data.utils.FileManager;
-import org.bookdash.android.data.utils.ZipManager;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-
-import bolts.Task;
 
 /**
  * @author rebeccafranks

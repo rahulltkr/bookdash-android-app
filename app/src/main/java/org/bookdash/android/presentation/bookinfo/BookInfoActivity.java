@@ -5,7 +5,6 @@ import android.content.pm.ActivityInfo;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
@@ -40,10 +39,8 @@ import android.widget.TextView;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.parse.GetDataCallback;
-import com.parse.ParseException;
-import com.parse.ParseFile;
 
+import org.bookdash.android.BR;
 import org.bookdash.android.Injection;
 import org.bookdash.android.R;
 import org.bookdash.android.domain.pojo.BookContributor;
@@ -51,7 +48,6 @@ import org.bookdash.android.domain.pojo.BookDetail;
 import org.bookdash.android.domain.pojo.gson.BookPages;
 import org.bookdash.android.presentation.activity.BaseAppCompatActivity;
 import org.bookdash.android.presentation.readbook.BookDetailActivity;
-import org.bookdash.android.BR;
 
 import java.util.List;
 
@@ -448,24 +444,12 @@ public class BookInfoActivity extends BaseAppCompatActivity implements BookInfoC
         textViewRole.setText(bookContributor.getContributor().getRole());
 
         final ImageView imageView = (ImageView) v.findViewById(R.id.imageViewContributorAvatar);
-        ParseFile pfAvatar = bookContributor.getContributor().getAvatar();
+        String pfAvatar = bookContributor.getContributor().getAvatarUrl();
         if (pfAvatar == null) {
             return;
         }
-        pfAvatar.getDataInBackground(new GetDataCallback() {
-            @Override
-            public void done(byte[] bytes, ParseException e) {
-                if (e == null) {
-                    Log.d(TAG, "We've got data in data.");
 
-                    Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                    imageView.setImageBitmap(bmp);
-
-                } else {
-                    Log.d(TAG, "There was a problem downloading the data.");
-                }
-            }
-        });
+      //TODO
     }
 
     @Override

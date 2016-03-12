@@ -1,7 +1,6 @@
 package org.bookdash.android.domain.pojo;
 
-import com.parse.ParseClassName;
-import com.parse.ParseObject;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,11 +9,12 @@ import java.util.Date;
  * @author Rebecca Franks (rebecca.franks@dstvdm.com)
  * @since 2015/07/17 6:39 PM
  */
-@ParseClassName("Book")
-public class Book extends ParseObject {
+
+@JsonIgnoreProperties(ignoreUnknown=true)
+public class Book  {
 
     public String getDateBookCreated(){
-        Date date = getDate("date_book_created");
+        Date date = null;
         if (date == null){
             return null;
         }
