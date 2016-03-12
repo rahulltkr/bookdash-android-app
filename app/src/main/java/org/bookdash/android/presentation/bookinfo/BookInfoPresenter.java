@@ -59,7 +59,7 @@ public class BookInfoPresenter implements BookInfoContract.UserActionsListener {
         }
         booksView.setBookInfoBinding(bookDetail);
 
-        booksView.setToolbarTitle(bookDetail.getBook_title());
+        booksView.setToolbarTitle(bookDetail.getBookTitle());
         if (bookDetail.isDownloadedAlready()) {
             booksView.showDownloadFinished();
         }
@@ -136,7 +136,7 @@ public class BookInfoPresenter implements BookInfoContract.UserActionsListener {
             booksView.showError(context.getString(R.string.book_info_still_loading));
             return;
         }
-        booksView.sendShareEvent(bookInfo.getBook_title());
+        booksView.sendShareEvent(bookInfo.getBookTitle());
     }
 
     private void extractPaletteColors(Bitmap resource) {

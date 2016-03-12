@@ -39,8 +39,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookViewHolder> {
     @Override
     public void onBindViewHolder(BookViewHolder holder, int position) {
         BookDetail bookDetail = bookDetails.get(position);
-        holder.bookTitle.setText(bookDetail.getBook_title());
-        Glide.with(context).load(bookDetail.getBook_cover_page_url()).into(holder.bookCover);
+        holder.bookTitle.setText(bookDetail.getBookTitle());
+        Glide.with(context).load(bookDetail.getBookCoverPageUrl()).into(holder.bookCover);
         holder.bookDetail = bookDetail;
         holder.downloadedIcon.setVisibility(bookDetail.isDownloadedAlready() ? View.VISIBLE : View.INVISIBLE);
         holder.cardContainer.setTag(holder);

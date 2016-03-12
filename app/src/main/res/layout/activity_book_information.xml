@@ -97,7 +97,7 @@
                     app:layout_scrollFlags="scroll|exitUntilCollapsed"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                    app:title="@{book_info.book_title}">
+                    app:title="@{book_info.bookTitle}">
 
                     <ImageView
                         android:id="@+id/image_view_book_cover"

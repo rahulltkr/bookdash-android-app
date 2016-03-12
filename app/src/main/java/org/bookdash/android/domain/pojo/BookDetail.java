@@ -16,11 +16,11 @@ import java.io.File;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class BookDetail implements Parcelable {
 
-    private String book_title;
-    private String book_cover_page_url;
+    private String bookTitle;
+    private String bookCoverPageUrl;
     private String aboutBook;
-    private String book_enabled;
-    private String book_language;
+    private String bookEnabled;
+    private String bookLanguage;
     private String key;
     private boolean isDownloading = false;
     private String webUrl;
@@ -29,18 +29,18 @@ public class BookDetail implements Parcelable {
     }
 
     public BookDetail(String title, String bookCoverUrl, String key, Language languageId) {
-        book_title = title;
-        book_cover_page_url = bookCoverUrl;
+        bookTitle = title;
+        bookCoverPageUrl = bookCoverUrl;
         this.key = key;
 
     }
 
     protected BookDetail(Parcel in) {
-        book_title = in.readString();
-        book_cover_page_url = in.readString();
+        bookTitle = in.readString();
+        bookCoverPageUrl = in.readString();
         aboutBook = in.readString();
-        book_enabled = in.readString();
-        book_language = in.readString();
+        bookEnabled = in.readString();
+        bookLanguage = in.readString();
         key = in.readString();
         isDownloading = in.readByte() != 0;
         webUrl = in.readString();
@@ -58,12 +58,12 @@ public class BookDetail implements Parcelable {
         }
     };
 
-    public String getBook_title() {
-        return book_title;
+    public String getBookTitle() {
+        return bookTitle;
     }
 
-    public String getBook_cover_page_url() {
-        return book_cover_page_url;
+    public String getBookCoverPageUrl() {
+        return bookCoverPageUrl;
     }
 
  /*   public ParseFile getBookFile() {
@@ -115,8 +115,8 @@ public class BookDetail implements Parcelable {
 
     /*public BookDetailParcelable toBookParcelable() {
         BookDetailParcelable bookDetailParcelable = new BookDetailParcelable();
-        bookDetailParcelable.setBookTitle(getBook_title());
-        bookDetailParcelable.setBookImageUrl(getBook_cover_page_url());
+        bookDetailParcelable.setBookTitle(getBookTitle());
+        bookDetailParcelable.setBookImageUrl(getBookCoverPageUrl());
         bookDetailParcelable.setBookDetailObjectId(getKey());
         bookDetailParcelable.setWebUrl(getWebUrl());
         return bookDetailParcelable;
@@ -133,11 +133,11 @@ public class BookDetail implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(book_title);
-        dest.writeString(book_cover_page_url);
+        dest.writeString(bookTitle);
+        dest.writeString(bookCoverPageUrl);
         dest.writeString(aboutBook);
-        dest.writeString(book_enabled);
-        dest.writeString(book_language);
+        dest.writeString(bookEnabled);
+        dest.writeString(bookLanguage);
         dest.writeString(key);
         dest.writeByte((byte) (isDownloading ? 1 : 0));
         dest.writeString(webUrl);
