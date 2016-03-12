@@ -17,20 +17,6 @@ import java.io.File;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class BookDetail implements Parcelable {
 
-    public static final String BOOK_TABLE_NAME = "BookDetails";
-    public static final String BOOK_TITLE_COL = "book_title";
-    public static final String BOOK_COVER_PAGE_URL_COL = "book_cover_page_url";
-    public static final String BOOK_DOWNLOAD_FILE_COL = "book_download_file";
-    public static final String BOOK_LANGUAGE_COL = "book_language";
-    public static final String BOOK_ID_COL = "book_id";
-    public static final String ABOUT_BOOK_COL = "aboutBook";
-    public static final String OBJECT_ID = "key";
-    public static final String BOOK_ENABLED_COL = "book_enabled";
-    public static final String CREATED_AT_COL = "createdAt";
-    public static final String BOOK_INFO_FILE_NAME = "bookdetails.json";
-    private static final String WEB_URL_COL = "book_website_link";
-
-
     private String book_title;
     private String book_cover_page_url;
     private String aboutBook;

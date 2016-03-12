@@ -9,11 +9,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Language  {
 
-    public static final String LANGUAGE_TABLE_NAME = "Language";
-    public static final String LANG_CODE_COL = "languageAbbreviation";
-    public static final String LANG_NAME_COL = "languageName";
-    public static final String LANGUAGE_ID = "languageId";
-
     public Language() {
     }
 
