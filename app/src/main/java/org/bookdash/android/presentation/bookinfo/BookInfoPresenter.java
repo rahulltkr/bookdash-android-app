@@ -54,7 +54,9 @@ public class BookInfoPresenter implements BookInfoContract.UserActionsListener {
     }
 
     private void showBookDetail(BookDetail bookDetail) {
-
+        if (bookDetail == null) {
+            return;
+        }
         booksView.setBookInfoBinding(bookDetail);
 
         booksView.setToolbarTitle(bookDetail.getBook_title());

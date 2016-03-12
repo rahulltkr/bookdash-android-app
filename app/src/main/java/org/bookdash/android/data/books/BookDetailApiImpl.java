@@ -179,7 +179,7 @@ public class BookDetailApiImpl  {
 
 
     private BookPages saveBook(byte[] bytes, BookDetail bookDetail) {
-        String targetLocation = BookDashApplication.FILES_DIR + File.separator + bookDetail.getObjectId();
+        String targetLocation = BookDashApplication.FILES_DIR + File.separator + bookDetail.getKey();
         String fileLocation = BookDashApplication.FILES_DIR + File.separator + bookDetail.getBookFile().getName();
 
         File f = new File("", targetLocation);

@@ -1,8 +1,6 @@
 package org.bookdash.android.domain.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.parse.ParseClassName;
-import com.parse.ParseObject;
 
 /**
  * @author Rebecca Franks (rebecca.franks@dstvdm.com)
@@ -12,34 +10,34 @@ import com.parse.ParseObject;
 public class Language  {
 
     public static final String LANGUAGE_TABLE_NAME = "Language";
-    public static final String LANG_CODE_COL = "language_abbreviation";
-    public static final String LANG_NAME_COL = "language_name";
-    public static final String LANGUAGE_ID = "language_id";
+    public static final String LANG_CODE_COL = "languageAbbreviation";
+    public static final String LANG_NAME_COL = "languageName";
+    public static final String LANGUAGE_ID = "languageId";
 
     public Language() {
     }
 
-    private String language_name;
-    private String language_abbreviation;
-    private String language_id;
+    private String languageName;
+    private String languageAbbreviation;
+    private String languageId;
 
     public Language(String languageName, String code, String languageId) {
-        language_abbreviation =  code;
-        language_name =  languageName;
-        this.language_id = languageId;
+        languageAbbreviation =  code;
+        this.languageName =  languageName;
+        this.languageId = languageId;
 
     }
 
     public String getLanguageCode() {
-        return language_abbreviation;
+        return languageAbbreviation;
     }
 
     public String getLanguageName() {
-        return language_name;
+        return languageName;
     }
 
     public String getLanguageId() {
-        return language_id;
+        return languageId;
     }
 
     @Override

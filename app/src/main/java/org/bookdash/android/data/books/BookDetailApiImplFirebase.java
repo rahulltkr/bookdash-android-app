@@ -20,6 +20,8 @@ import java.util.List;
 public class BookDetailApiImplFirebase implements BookDetailApi {
 
     private static final String TAG = "BookDetailApi";
+    public static final String LANGUAGES_TABLE = "languages";
+    public static final String BOOK_DETAILS_TABLE = "book_details";
     Firebase firebase;
 
     public BookDetailApiImplFirebase() {
@@ -29,7 +31,7 @@ public class BookDetailApiImplFirebase implements BookDetailApi {
     @Override
     public void getBooksForLanguages(String language, final BookServiceCallback<List<BookDetail>> bookServiceCallback) {
 
-        firebase.child("book_details").addValueEventListener(new ValueEventListener() {
+        firebase.child(BOOK_DETAILS_TABLE).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 List<BookDetail> bookDetails = new ArrayList<>();
@@ -49,7 +51,7 @@ public class BookDetailApiImplFirebase implements BookDetailApi {
 
     @Override
     public void getBookDetail(String bookDetailId, final BookServiceCallback<BookDetail> bookServiceCallback) {
-        firebase.child("book_details").startAt(bookDetailId, "objectId").endAt(bookDetailId, "objectId").addListenerForSingleValueEvent(new ValueEventListener() {
+        firebase.child(BOOK_DETAILS_TABLE +"/" + bookDetailId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 BookDetail post = dataSnapshot.getValue(BookDetail.class);
@@ -71,7 +73,7 @@ public class BookDetailApiImplFirebase implements BookDetailApi {
 
     @Override
     public void getLanguages(final BookServiceCallback<List<Language>> languagesCallback) {
-        firebase.child("languages").addValueEventListener(new ValueEventListener() {
+        firebase.child(LANGUAGES_TABLE).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 List<Language> language = new ArrayList<>();

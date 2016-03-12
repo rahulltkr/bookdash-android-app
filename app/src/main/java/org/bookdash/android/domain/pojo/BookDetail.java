@@ -24,7 +24,7 @@ public class BookDetail implements Parcelable {
     public static final String BOOK_LANGUAGE_COL = "book_language";
     public static final String BOOK_ID_COL = "book_id";
     public static final String ABOUT_BOOK_COL = "aboutBook";
-    public static final String OBJECT_ID = "objectId";
+    public static final String OBJECT_ID = "key";
     public static final String BOOK_ENABLED_COL = "book_enabled";
     public static final String CREATED_AT_COL = "createdAt";
     public static final String BOOK_INFO_FILE_NAME = "bookdetails.json";
@@ -36,17 +36,17 @@ public class BookDetail implements Parcelable {
     private String aboutBook;
     private String book_enabled;
     private String book_language;
-    private String objectId;
+    private String key;
     private boolean isDownloading = false;
     private String webUrl;
 
     public BookDetail() {
     }
 
-    public BookDetail(String title, String bookCoverUrl, String objectId, Language languageId) {
+    public BookDetail(String title, String bookCoverUrl, String key, Language languageId) {
         book_title = title;
         book_cover_page_url = bookCoverUrl;
-        this.objectId = objectId;
+        this.key = key;
 
     }
 
@@ -56,7 +56,7 @@ public class BookDetail implements Parcelable {
         aboutBook = in.readString();
         book_enabled = in.readString();
         book_language = in.readString();
-        objectId = in.readString();
+        key = in.readString();
         isDownloading = in.readByte() != 0;
         webUrl = in.readString();
     }
@@ -99,7 +99,7 @@ public class BookDetail implements Parcelable {
 
 
     public String getFolderLocation(String filesDir) {
-        return getFolderLocation(new File(filesDir, objectId + File.separator));
+        return getFolderLocation(new File(filesDir, key + File.separator));
     }
 
     private String getFolderLocation(File file) {
@@ -111,13 +111,13 @@ public class BookDetail implements Parcelable {
     }
 
     public boolean isDownloadedAlready() {
-        String targetLocation = BookDashApplication.FILES_DIR + File.separator + objectId;
+        String targetLocation = BookDashApplication.FILES_DIR + File.separator + key;
         File f = new File("", targetLocation);
         return f.exists();
     }
 
-    public String getObjectId() {
-        return objectId;
+    public String getKey() {
+        return key;
     }
 
     public boolean isDownloading() {
@@ -132,7 +132,7 @@ public class BookDetail implements Parcelable {
         BookDetailParcelable bookDetailParcelable = new BookDetailParcelable();
         bookDetailParcelable.setBookTitle(getBook_title());
         bookDetailParcelable.setBookImageUrl(getBook_cover_page_url());
-        bookDetailParcelable.setBookDetailObjectId(getObjectId());
+        bookDetailParcelable.setBookDetailObjectId(getKey());
         bookDetailParcelable.setWebUrl(getWebUrl());
         return bookDetailParcelable;
     }*/
@@ -153,7 +153,7 @@ public class BookDetail implements Parcelable {
         dest.writeString(aboutBook);
         dest.writeString(book_enabled);
         dest.writeString(book_language);
-        dest.writeString(objectId);
+        dest.writeString(key);
         dest.writeByte((byte) (isDownloading ? 1 : 0));
         dest.writeString(webUrl);
     }

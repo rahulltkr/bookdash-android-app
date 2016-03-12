@@ -182,7 +182,7 @@ public class BookInfoActivity extends BaseAppCompatActivity implements BookInfoC
         final BookDetail bookDetailParcelable = getIntent().getParcelableExtra(BOOK_PARCEL);
 
         if (bookDetailParcelable != null) {
-            String bookDetailId = bookDetailParcelable.getObjectId();
+            String bookDetailId = bookDetailParcelable.getKey();
             startLoadingBook(bookDetailId);
             actionsListener.loadImage(bookDetailParcelable.getBook_cover_page_url());
         } else {
@@ -341,6 +341,9 @@ public class BookInfoActivity extends BaseAppCompatActivity implements BookInfoC
         if (client!=null) {
             client.connect();
         }
+        if (bookInfo == null){
+            return;
+        }
 
         this.bookInfo = bookInfo;
         binding.setVariable(BR.book_info, bookInfo);
@@ -349,7 +352,7 @@ public class BookInfoActivity extends BaseAppCompatActivity implements BookInfoC
                 Action.TYPE_VIEW,
                 bookInfo.getBook_title(),
                 bookInfo.getWebUrl() == null ? null : Uri.parse(bookInfo.getWebUrl()),
-                Uri.parse("android-app://org.bookdash.android/http/bookdash.org/books/" + bookInfo.getObjectId())
+                Uri.parse("android-app://org.bookdash.android/http/bookdash.org/books/" + bookInfo.getKey())
         );
         if (viewAction != null && client!=null) {
             AppIndex.AppIndexApi.start(client, viewAction);
