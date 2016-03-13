@@ -37,6 +37,7 @@ public class BookDetailApiImplFirebase implements BookDetailApi {
                 List<BookDetail> bookDetails = new ArrayList<>();
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     BookDetail post = postSnapshot.getValue(BookDetail.class);
+                    post.setKey(postSnapshot.getKey());
                     bookDetails.add(post);
                 }
                 bookServiceCallback.onLoaded(bookDetails);

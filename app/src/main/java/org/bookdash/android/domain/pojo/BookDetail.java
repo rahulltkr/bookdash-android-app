@@ -13,7 +13,7 @@ import java.io.File;
  * @author Rebecca Franks
  * @since 2015/07/16 2:10 PM
  */
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BookDetail implements Parcelable {
 
     private String bookTitle;
@@ -21,6 +21,8 @@ public class BookDetail implements Parcelable {
     private String aboutBook;
     private String bookEnabled;
     private String bookLanguage;
+
+
     private String key;
     private boolean isDownloading = false;
     private String webUrl;
@@ -70,14 +72,14 @@ public class BookDetail implements Parcelable {
         return null;//getParseFile(BOOK_DOWNLOAD_FILE_COL);
     }*/
 
-   /* public Language getLanguage() {
-        return (Language) get(BOOK_LANGUAGE_COL);
-    }
+    /* public Language getLanguage() {
+         return (Language) get(BOOK_LANGUAGE_COL);
+     }
 
-    public Book getBook() {
-        return (Book) get(BOOK_ID_COL);
-    }
-*/
+     public Book getBook() {
+         return (Book) get(BOOK_ID_COL);
+     }
+ */
     public String getAboutBook() {
         return aboutBook;
     }
@@ -124,6 +126,9 @@ public class BookDetail implements Parcelable {
 
     public String getWebUrl() {
         return webUrl;
+    }
+    public void setKey(String key) {
+        this.key = key;
     }
 
     @Override

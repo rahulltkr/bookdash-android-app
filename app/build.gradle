@@ -161,7 +161,7 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.5.3@aar') {
         transitive = true;
     }
-    compile 'za.co.riggaroo:materialhelptutorial:1.0.3'
+    compile 'za.co.riggaroo:materialhelptutorial:1.1.0'
     compile "com.google.android.gms:play-services-appinvite:$rootProject.ext.googlePlayServicesVersion"
     compile "com.google.android.gms:play-services-appindexing:$rootProject.ext.googlePlayServicesVersion"
     compile "com.android.support:design:$rootProject.ext.googlePlayServicesVersion"
