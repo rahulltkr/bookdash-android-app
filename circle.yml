@@ -29,5 +29,5 @@ test:
     - adb shell settings put global animator_duration_scale 0
 
   override:
-    - ./gradlew assembleRelease
+    - ./gradlew assemble test
     - cp -r project-name/build/outputs $CIRCLE_ARTIFACTS
